@@ -11,7 +11,8 @@
       --miffy-blue: #4a90e2;
       --miffy-orange: #ff914d;
       --miffy-red: #ff5757;
-      --miffy-bg: #fffbf0;
+      --miffy-bg-light: #fffcf2;
+      --miffy-bg-grid: #f5eedc;
       --miffy-dark: #222222;
     }
 
@@ -22,7 +23,16 @@
     }
 
     body {
-      background-color: var(--miffy-bg);
+      /* Miffy pastel checkerboard pattern */
+      background-color: var(--miffy-bg-light);
+      background-image: 
+        linear-gradient(45deg, var(--miffy-bg-grid) 25%, transparent 25%), 
+        linear-gradient(-45deg, var(--miffy-bg-grid) 25%, transparent 25%), 
+        linear-gradient(45deg, transparent 75%, var(--miffy-bg-grid) 75%), 
+        linear-gradient(-45deg, transparent 75%, var(--miffy-bg-grid) 75%);
+      background-size: 40px 40px;
+      background-position: 0 0, 0 20px, 20px -20px, -20px 0px;
+      
       font-family: 'Nunito', sans-serif;
       color: var(--miffy-dark);
       display: flex;
@@ -30,8 +40,31 @@
       align-items: center;
       min-height: 100vh;
       padding: 20px;
+      position: relative;
+      overflow-x: hidden;
     }
 
+    /* Decorative Background Elements */
+    .bg-flower {
+      position: absolute;
+      font-size: 2rem;
+      user-select: none;
+      animation: float 4s ease-in-out infinite;
+      z-index: 0;
+      opacity: 0.8;
+    }
+
+    .flower-1 { top: 10%; left: 8%; animation-delay: 0s; }
+    .flower-2 { top: 75%; left: 12%; animation-delay: 1s; }
+    .flower-3 { top: 15%; right: 10%; animation-delay: 2s; }
+    .flower-4 { top: 80%; right: 8%; animation-delay: 1.5s; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(8deg); }
+    }
+
+    /* Main Card */
     .card-container {
       background: #ffffff;
       border: 4px solid var(--miffy-dark);
@@ -42,6 +75,7 @@
       box-shadow: 8px 8px 0px var(--miffy-dark);
       text-align: center;
       position: relative;
+      z-index: 1;
     }
 
     /* Miffy Face Element */
@@ -164,6 +198,12 @@
   </style>
 </head>
 <body>
+
+  <!-- Floating Background Flowers -->
+  <div class="bg-flower flower-1">🌼</div>
+  <div class="bg-flower flower-2">🍊</div>
+  <div class="bg-flower flower-3">🌷</div>
+  <div class="bg-flower flower-4">☁️</div>
 
   <div class="card-container">
     <!-- CSS Miffy Face -->
